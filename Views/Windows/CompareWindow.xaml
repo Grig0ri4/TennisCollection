@@ -1,0 +1,37 @@
+﻿<Window x:Class="TennisCatalog.CompareWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
+        Title="Сравнение игроков" Height="700" Width="1000" Background="#0F172A" WindowStartupLocation="CenterOwner">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="220"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0">
+                <TextBlock Text="Игрок 1" Foreground="White" Margin="0,0,0,5" FontWeight="Bold"/>
+                <TextBox x:Name="P1SearchBox" TextChanged="P1SearchBox_TextChanged" Margin="0,0,0,5" Padding="5" Background="#1E293B" Foreground="White" BorderThickness="1" BorderBrush="#3B82F6"/>
+                <ListBox x:Name="P1List" Height="140" DisplayMemberPath="full_name" SelectionChanged="P1List_SelectionChanged"/>
+            </StackPanel>
+
+            <TextBlock Grid.Column="1" Text="VS" Foreground="#3B82F6" FontSize="32" FontWeight="Black" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+            <StackPanel Grid.Column="2">
+                <TextBlock Text="Игрок 2" Foreground="White" Margin="0,0,0,5" FontWeight="Bold"/>
+                <TextBox x:Name="P2SearchBox" TextChanged="P2SearchBox_TextChanged" Margin="0,0,0,5" Padding="5" Background="#1E293B" Foreground="White" BorderThickness="1" BorderBrush="#3B82F6"/>
+                <ListBox x:Name="P2List" Height="140" DisplayMemberPath="full_name" SelectionChanged="P2List_SelectionChanged"/>
+            </StackPanel>
+        </Grid>
+
+        <Border Grid.Row="1" Background="#1E293B" CornerRadius="15" Padding="15" Margin="0,15,0,0">
+            <lvc:CartesianChart x:Name="CompareChart" LegendPosition="Right" />
+        </Border>
+    </Grid>
+</Window>

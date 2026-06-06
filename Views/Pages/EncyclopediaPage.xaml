@@ -1,0 +1,98 @@
+﻿<Page x:Class="TennisCatalog.EncyclopediaPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Энциклопедия" Background="Transparent">
+
+    <Grid Margin="15,10,15,15">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0" Background="White" CornerRadius="12" Padding="15">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="10" ShadowDepth="2" Color="#000000" Opacity="0.05"/>
+            </Border.Effect>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="БАЗА ЗНАНИЙ" FontSize="16" FontWeight="Black" Foreground="#0F172A" Margin="10,5,0,15"/>
+
+                <ListBox Grid.Row="1" x:Name="ArticlesListBox" 
+         SelectedValuePath="id" 
+         SelectionChanged="ArticlesListBox_SelectionChanged" 
+         Background="Transparent" 
+         BorderThickness="0" 
+         FontSize="15" 
+         ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="Padding" Value="0"/>
+                            <Setter Property="Margin" Value="0,4"/>
+                            <Setter Property="Foreground" Value="#334155"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ListBoxItem">
+                                        <Border x:Name="ItemBorder" Background="Transparent" CornerRadius="8" 
+                                Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource AncestorType=ListBox}}">
+                                            <TextBlock Text="{Binding title}" 
+                                       TextWrapping="Wrap" 
+                                       Padding="15,12"
+                                       Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource AncestorType=ListBox}}"/>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="ItemBorder" Property="Background" Value="#F1F5F9"/>
+                                            </Trigger>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter TargetName="ItemBorder" Property="Background" Value="#2563EB"/>
+                                                <Setter Property="Foreground" Value="White"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                </ListBox>
+            </Grid>
+        </Border>
+
+        <Border Grid.Column="2" Background="White" CornerRadius="12" Padding="30">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="10" ShadowDepth="2" Color="#000000" Opacity="0.05"/>
+            </Border.Effect>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock x:Name="ArticleTitleHeader" Grid.Row="0" FontSize="26" FontWeight="Black" Foreground="#1E3A8A" TextWrapping="Wrap" Text="Выберите статью из списка слева" Margin="0,0,0,15"/>
+
+                <Rectangle Grid.Row="1" Height="2" Fill="#E2E8F0" Margin="0,0,0,20"/>
+
+                <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto" Padding="0,0,15,0">
+                    <TextBlock x:Name="ArticleContentBox" FontSize="15" Foreground="#334155" TextWrapping="Wrap" LineHeight="24" Text="Здесь появится текст выбранной статьи..."/>
+                </ScrollViewer>
+
+                <Button Grid.Row="3" x:Name="SourceLinkButton" Content="🌐 ПЕРЕЙТИ К ОРИГИНАЛУ СТАТЬИ" Click="SourceLinkButton_Click" Background="#38BDF8" Foreground="White" FontWeight="Bold" Height="45" Margin="0,20,0,0" Cursor="Hand" Visibility="Collapsed">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" CornerRadius="8">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
+        </Border>
+    </Grid>
+</Page>

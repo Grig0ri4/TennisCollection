@@ -1,0 +1,80 @@
+﻿<Page x:Class="TennisCatalog.UserPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
+      Title="Профиль" Background="Transparent">
+
+    <Grid Margin="15,10,15,15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="White" CornerRadius="12" Padding="20" Margin="0,0,0,15">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="10" ShadowDepth="2" Color="#000000" Opacity="0.05"/>
+            </Border.Effect>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Border Width="80" Height="80" CornerRadius="40" Background="#F1F5F9" ClipToBounds="True">
+                    <Image x:Name="UserPhoto" Stretch="UniformToFill"/>
+                </Border>
+
+                <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="20,0,0,0">
+                    <TextBlock Text="ПРОФИЛЬ ПОЛЬЗОВАТЕЛЯ" FontSize="12" FontWeight="Bold" Foreground="#94A3B8" Margin="0,0,0,5"/>
+                    <TextBlock x:Name="FullNameText" FontSize="26" FontWeight="Black" Foreground="#0F172A" TextWrapping="Wrap"/>
+                </StackPanel>
+
+                <Button Grid.Column="2" Content="ВЫЙТИ ИЗ СИСТЕМЫ" Click="ExitButton_Click" Width="160" Background="#0F172A" Foreground="White" FontWeight="Bold" Height="40" VerticalAlignment="Center" Cursor="Hand">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" CornerRadius="6">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="1" Background="White" CornerRadius="12" Padding="25">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="10" ShadowDepth="2" Color="#000000" Opacity="0.05"/>
+            </Border.Effect>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                    <TextBlock Text="ЛИЧНАЯ СТАТИСТИКА" FontSize="16" FontWeight="Black" Foreground="#0F172A" Margin="0,0,0,20"/>
+
+                    <TextBlock Text="СРЕДНЯЯ ОЦЕНКА МАТЧЕЙ" FontSize="12" FontWeight="Bold" Foreground="#64748B"/>
+                    <TextBlock x:Name="AvgRatingText" Text="0.0" FontSize="42" FontWeight="Black" Foreground="#38BDF8" Margin="0,-5,0,20"/>
+
+                    <Border Background="#F8FAFC" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="8" Padding="15" Margin="0,0,0,20">
+                        <TextBlock x:Name="TotalMatchesText" Text="Матчей в дневнике: 0" FontSize="15" FontWeight="Bold" Foreground="#1E3A8A" TextWrapping="Wrap"/>
+                    </Border>
+
+                    <Button Content="ОТКРЫТЬ ДНЕВНИК" Click="MyDiaryButton_Click" Background="#2563EB" Foreground="White" FontWeight="Bold" Height="45" Cursor="Hand">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" CornerRadius="8">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
+
+                <lvc:PieChart Grid.Column="1" x:Name="TourPieChart" LegendPosition="Right" Margin="20,0,0,0"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Page>
